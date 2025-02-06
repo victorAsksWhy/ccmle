@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <title>Cookie Clicker Manual Labor Edition</title>
+    <link rel="stylesheet" href="game.css">
+    <script src="cookies.js"></script>
+</head>
+<body>
+    <div id="buyButton">
+        <button class="cookie" id="cookieUpgrade0" style="display: block; right: 0px;" onclick="addCookie()"><span>Click to make 1 cookie(s).</span></button>
+    </div>
+    <button class="clickUpgrade" id="clickUpgrade1" onclick="upgrade1()">
+        <p class="modalText">Increase the number of cookies/click by 5 for</p>
+        <p class="modalTextStat" id="upgrade1costtext">10</p>
+        <p class="modalText">cookies.</p>
+        <p class="modalTextInline">Level: <p class="modalTextInline" id="upg1level">0</p><p class="modalTextInline">/20</p></p>
+</button>
+    <div id="cookiesModal" class="statsModal">
+        <p class="modalText">You have</p>
+        <p class="modalTextStat" id="cookiestext">0</p>
+        <p class="modalText">Cookies</p>
+        
+    </div>
+</body>

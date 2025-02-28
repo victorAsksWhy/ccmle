@@ -2,30 +2,40 @@
 <head>
     <title>Cookie Clicker Manual Labor Edition</title>
     <link rel="stylesheet" href="game.css">
-    <script src="cookies.js"></script>
+    <script src="points.js"></script>
 </head>
 <body>
-    <h1>Cookie Clicker Manual Labor Edition</h1>
+    <h1>Points Unautomated</h1>
     <hr>
     <div>
         <h2>Production</h2>
         <div id="buyButton" class="mainButton">
-            <button class="cookie" id="cookieUpgrade0" style="display: block; right: 0px;" onclick="addCookie()"><span>Click to make 1 cookie(s).</span></button>
+            <button class="cookie" id="cookieUpgrade0" style="display: block; right: 0px;" onclick="addPoint()"><span>Click to make 1 point(s).</span></button>
         </div>
         <div id="cookiesModal" class="statsModal">
             <p class="modalText">You have</p>
-            <p class="modalTextStat" id="cookiestext">0</p>
-            <p class="modalText">Cookies</p>   
+            <p class="modalTextStat" id="pointstext">0</p>
+            <p class="modalText">points</p>   
         </div>
     </div>
-    <div>
-        <hr>
-        <button class="clickUpgrade" id="clickUpgrade1" onclick="upgrade1()">
-            <p class="clickUpgradeTitle">1. Click enhancements</p>
-            <p class="clickUpgradeText">Increase the number of cookies/click by 1 for</p>
-            <p class="modalTextStat" id="upgrade1costindicator">10</p>
-            <p class="clickUpgradeText">cookies.</p>
-            <p class="clickUpgradeTextInline">Level: <p class="clickUpgradeTextInline" id="upg1level">1</p><p class="clickUpgradeTextInline">/20</p></p>
-        </button>
+    <div id="clickupgrades">
+        <div id="clickUpgrade1">
+            <hr>
+            <button class="clickUpgrade" id="clickUpgrade1" onclick="upgrade1()">
+                <p class="clickUpgradeTitle">1. Click enhancements</p>
+                <p class="clickUpgradeText">Increase the number of points/click by 1 for</p>
+                <p class="modalTextStat" id="upgrade1costindicator">10</p>
+                <p class="clickUpgradeText">points.</p>
+                <p class="clickUpgradeTextInline">Level: <p class="clickUpgradeTextInline" id="upg1level">1</p><p class="clickUpgradeTextInline">/20</p></p>
+            </button>
+        </div>
+        <div id="clickUpgrade2">
+            <button class="clickUpgrade" id="clickUpgrade2" onclick="upgrade2()">
+                <p class="clickUpgradeTitle">2. More enchancements</p>
+                <p class="clickUpgradeText">Base PPC x2</p>
+                <p class = "modalTextStat" id="upgrade2costindicator">50</p>
+                <p class="clickUpgradeText">points.</p>
+            </button>
+        </div>
     </div>
 </body>

@@ -55,6 +55,6 @@ function upgrade2(){
         console.log("the level is %d", upgrade2level)
         update();
         document.getElementById("upgrade2costindicator").innerHTML=upgrade2cost;
-        //document.getElementById("upg2).innerHTML=upgrade2level;     
+        document.getElementById("upg2level").innerHTML=upgrade2level;     
     }   
 }

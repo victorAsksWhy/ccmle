@@ -8,6 +8,13 @@ button.cookie{
     border: 2px solid #705a1e;
     
 }
+p.clickPointText{
+    font-size: 12;
+    color:white;
+    text-align: center;
+    line-height: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+}
 div.statsModal{
     background-color: rgb(196, 196, 196);
     border-width: 2px;
@@ -83,4 +90,19 @@ h1{
 
 h2{
     font-family: Arial, Helvetica, sans-serif;
+}
+
+p.productionText{
+    font-size: 12;
+    color:white;
+    text-align: center;
+    line-height: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+span.productionTextInline{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 4px;
+    color: rgb(255, 255, 255);
 }

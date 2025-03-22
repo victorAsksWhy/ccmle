@@ -10,7 +10,10 @@
     <div>
         <h2>Production</h2>
         <div id="buyButton" class="mainButton">
-            <button class="cookie" id="cookieUpgrade0" style="display: block; right: 0px;" onclick="addPoint()"><span>Click to make 1 point(s).</span></button>
+            <button class="cookie" id="cookieUpgrade0" style="display: block; right: 0px;" onclick="addPoint()">
+                <p class="productionText">Click to produce <span class="productionText" id="pointIndicator">1</span></p><p class="productionText"> point(s).</p>
+                
+            </button>
         </div>
         <br>
         <div id="cookiesModal" class="statsModal">
@@ -35,7 +38,7 @@
             <button class="clickUpgrade" id="clickUpgrade2" onclick="upgrade2()">
                 <p class="clickUpgradeTitle">2. More enchancements</p>
                 <p class="clickUpgradeText">Base PPC x2</p>
-                <p class = "modalTextStat" id="upgrade2costindicator">50</p>
+                <p class = "modalTextStat" id="upgrade2costindicator">75</p>
                 <p class="clickUpgradeText">points.</p>
                 <p class="clickUpgradeTextInline">Level: <p class="clickUpgradeTextInline" id="upg2level">0</p><p class="clickUpgradeTextInline">/5</p></p>
             </button>

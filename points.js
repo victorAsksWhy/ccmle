@@ -17,12 +17,12 @@ function setpoints(n){ //🤫
     update();
 }
 function calculateBonus(type, amount, baseOrBoost){ //hopefully rework the bonus
-    if (baseOrBoost == 'base'){ //hopefully self documenting
-        if (type == 'add'){
-            baseppc += amount;
+    if (baseOrBoost == 'base'){ //type: additive or multiplicative.
+        if (type == 'add'){     //amount + or times by how much
+            baseppc += amount;  //baseOrBoost: modify the base or add a boost
         }
         else if (type == 'multi'){
-            baseppc * amount;
+            baseppc = baseppc * amount;
         }
     }
     else if (baseOrBoost == 'boost'){
@@ -42,12 +42,12 @@ function addPoint(){
     update();
 }
 var upgrade1cost = 10; //formula: 10*level^1.2 must be declared outside!
+var upgrade1level = 1; //must be ou
 function upgrade1(){  
-    var upgrade1level = 1;
     var upgrade1maxlevel = 20;
-    var type = 'add'
-    var amount = 1
-    var boostType = 'boost'  
+    var type = 'add';
+    var amount = 1;
+    var boostType = 'boost';
     if (points >= upgrade1cost && upgrade1level < upgrade1maxlevel){
         points -= upgrade1cost;    
         upgrade1level += 1;
@@ -55,8 +55,6 @@ function upgrade1(){
         console.log('cost: %d. level: %d', upgrade1cost,upgrade1level)
         document.getElementById("upgrade1costindicator").innerHTML=upgrade1cost;
         document.getElementById("upg1level").innerHTML=upgrade1level;     
-        console.log("the cost of upg 1 is now %d",upgrade1cost);
-        console.log("the bonus is %d", upgrade1level);
         calculateBonus(type, amount, boostType);
         update();
         
@@ -64,11 +62,10 @@ function upgrade1(){
 }
 //upgrade 2 things
 
-
+var upgrade2cost = 75; //formula: 75*2^level
+var upgrade2level = 0;
 function upgrade2(){  
-    var upgrade2cost = 75; //formula: 75*2^level
     var upgrade2maxlevel = 7;
-    var upgrade2level = 0;
     var type = 'multi';
     var amount = 2;
     var boostType = 'base';
@@ -77,10 +74,10 @@ function upgrade2(){
         upgrade2level += 1;
         upgrade2cost = 75*2**upgrade2level;
         console.log("the cost of upg 2 is now %d and the level is %d",upgrade2cost, upgrade2level);
-        calculateBonus(type,amount,boostType);
-        update();
         document.getElementById("upgrade2costindicator").innerHTML=upgrade2cost;
         document.getElementById("upg2level").innerHTML=upgrade2level;     
+        calculateBonus(type,amount,boostType);
+        update();
     }   
 }
 

@@ -84,14 +84,21 @@ function upgrade2(){
 //upgrade 3 things
 
 var upgrade3cost = 750;
-var upgrade3maxlevel = 1;
+var upgrade3level = 0;
 function upgrade3(){
+    var upgrade3maxlevel = 1;
+    var type='add';
+    var amount=25;
+    var boostType='base';
     if (points >= upgrade3cost && upgrade3level < upgrade3maxlevel){
         boughtUpgrade3 = 1;
         points -= upgrade3cost;
         upgrade3level += 1;
-        console.log("bought upgrade 3");
-        update();
+        upgrade3cost = Math.round(750*1.15**upgrade3level);
+        console.log("the cost of upg 3 is now %d with level %d", upgrade3level, upgrade3cost);
         document.getElementById("upg3level").innerHTML=upgrade3level;
+        document.getElementById("upgrade3costIndicator").innerHTML=upgrade3cost;
+        calculateBonus(type,amount,boostType);
+        update();
     }
 }

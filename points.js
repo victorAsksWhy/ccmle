@@ -1,64 +1,104 @@
-//const { sleep } = require("openai/core.mjs");
+// dont elete or else
 var baseppc = 1;
-var pointsPerClick = 1;
 var points = 0;
-var button = document.getElementById("cookieUpgrade0");
-var upgrade1level = 1;
-var upgrade1cost = (10 * upgrade1level ** 1.15);
-var upgrade1bonus = 0;
 var cpcBonusUpgrade2 = 0;
-var upgrade2level = 0;
-//document.getElementById("upgrade1costindicator").innerHTML=upgrade1cost;
-console.log("%d",points)
+var upgrade3level = 0;
+var boughtUpgrade3 = 0;
+var bonusTotal = 0;
+
 function update(){
-    var boostedBase = baseppc*(2**upgrade2level);
-    var pointsPerClick = boostedBase+upgrade1bonus;
+    var pointsPerClick = baseppc +bonusTotal;
     document.getElementById("pointIndicator").innerHTML=pointsPerClick;
-    console.log("getting %d points per click", pointsPerClick)
     document.getElementById("pointstext").innerHTML=points;
-    console.log("updated to %d", points)
+    console.log("updated to %d points. you are getting %d points per click.", points,pointsPerClick)
+}
+function setpoints(n){ //🤫
+    points=n;
+    update();
+}
+function calculateBonus(type, amount, baseOrBoost){ //hopefully rework the bonus
+    if (baseOrBoost == 'base'){ //type: additive or multiplicative.
+        if (type == 'add'){     //amount + or times by how much
+            baseppc += amount;  //baseOrBoost: modify the base or add a boost
+        }
+        else if (type == 'multi'){
+            baseppc = baseppc * amount;
+        }
+    }
+    else if (baseOrBoost == 'boost'){
+        if (type == 'add'){
+            bonusTotal += amount;
+        }
+        else if (type == 'multi'){
+            bonusTotal = bonusTotal * amount; //pls don't use this it will screw up progression
+        }
+    }
+    //update();
 }
 function addPoint(){
-    var boostedBase = baseppc*(2**upgrade2level);
-    var pointsPerClick = boostedBase+upgrade1bonus;
-    console.log("ppc should be %d",pointsPerClick);
-    console.log("from %d base ppc", baseppc);
-    console.log("plus %d from first upg:",upgrade1bonus);
-    console.log("and base ppc times 2^%d",upgrade2level)
+    var pointsPerClick = baseppc+bonusTotal;    
     points += pointsPerClick;
-    console.log("u got %d",points);
     document.getElementById("pointstext").innerHTML=points;
     update();
 }
-var upgrade1bonus = 0;
-var upgrade1maxlevel = 20;
+var upgrade1cost = 10; //formula: 10*level^1.2 must be declared outside!
+var upgrade1level = 1; //must be ou
 function upgrade1(){  
+    var upgrade1maxlevel = 20;
+    var type = 'add';
+    var amount = 1;
+    var boostType = 'boost';
     if (points >= upgrade1cost && upgrade1level < upgrade1maxlevel){
         points -= upgrade1cost;    
-        upgrade1bonus += 1;    
         upgrade1level += 1;
         upgrade1cost = Math.round(10 * upgrade1level ** 1.2);  
-        console.log("the cost of upg 1 is now %d",upgrade1cost);
-        console.log("the bonus is %d", upgrade1bonus
-        )
-        update();
+        console.log('cost: %d. level: %d', upgrade1cost,upgrade1level)
         document.getElementById("upgrade1costindicator").innerHTML=upgrade1cost;
         document.getElementById("upg1level").innerHTML=upgrade1level;     
+        calculateBonus(type, amount, boostType);
+        update();
+        
     }   
 }
 //upgrade 2 things
-var upgrade2cost = 50;
-var upgrade2maxlevel = 5;
 
+var upgrade2cost = 75; //formula: 75*2^level
+var upgrade2level = 0;
 function upgrade2(){  
+    var upgrade2maxlevel = 7;
+    var type = 'multi';
+    var amount = 2;
+    var boostType = 'base';
     if (points >= upgrade2cost && upgrade2level < upgrade2maxlevel){
         points -= upgrade2cost;    
         upgrade2level += 1;
-        upgrade2cost = 100*2**upgrade2level;
-        console.log("the cost of upg 2 is now %d",upgrade2cost);
-        console.log("the level is %d", upgrade2level)
-        update();
+        upgrade2cost = 75*2**upgrade2level;
+        console.log("the cost of upg 2 is now %d and the level is %d",upgrade2cost, upgrade2level);
         document.getElementById("upgrade2costindicator").innerHTML=upgrade2cost;
         document.getElementById("upg2level").innerHTML=upgrade2level;     
+        calculateBonus(type,amount,boostType);
+        update();
     }   
+}
+
+//upgrade 3 things
+
+var upgrade3cost = 750;
+var upgrade3level = 0;
+function upgrade3(){
+    var upgrade3maxlevel = 1;
+    var type='add';
+    var amount=25;
+    var boostType='base';
+    if (points >= upgrade3cost && upgrade3level < upgrade3maxlevel){
+        boughtUpgrade3 = 1;
+        points -= upgrade3cost;
+        upgrade3level += 1;
+        upgrade3cost = Math.round(750*1.15**upgrade3level);
+        console.log("the cost of upg 3 is now %d with level %d", upgrade3level, upgrade3cost);
+        document.getElementById("upg3level").innerHTML=upgrade3level;
+        document.getElementById("upgrade3costIndicator").innerHTML=upgrade3cost;
+        calculateBonus(type,amount,boostType);
+        update();
+    }
 }

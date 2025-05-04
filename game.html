@@ -1,8 +1,10 @@
+
+<!--<script src="https://cdn.jsdelivr.net/npm/chance@1.1.12/chance.min.js" type="module"></script> <!--make sure to edit this after the new chance version drops-->
 <!DOCTYPE html>
 <head>
     <title>Points Unautomated</title>
-    <link rel="stylesheet" href="game.css">
     <script src="points.js"></script>
+    <link rel="stylesheet" href="game.css">
 </head>
 <body>
     <h1>Points Unautomated</h1>
@@ -15,15 +17,26 @@
             </button>
         </div>
         <br>
+        <div id="minetest">
+            <button class="mineButton">
+                <p> sample text</p>
+            </button>
+        <br>
+        
+    </div>
+    <hr>
+    <div id="stats">
+        <h2>Stats</h2>
         <div id="cookiesModal" class="statsModal">
             <p class="modalText">You have</p>
             <p class="modalTextStat" id="pointstext">0</p>
             <p class="modalText">points</p>   
         </div>
     </div>
+    <hr>
+    <br>
     <div id="clickupgrades">
         <div id="clickUpgrade1">
-            <hr>
             <button class="clickUpgrade" id="clickUpgrade1" onclick="upgrade1()">
                 <p class="clickUpgradeTitle">1. Click enhancements</p>
                 <p class="clickUpgradeText">Increase the number of points/click by 1</p>
@@ -36,10 +49,10 @@
         <div id="clickUpgrade2">
             <button class="clickUpgrade" id="clickUpgrade2" onclick="upgrade2()">
                 <p class="clickUpgradeTitle">2. More enhancements</p>
-                <p class="clickUpgradeText">Base PPC (points per click) x2</p>
+                <p class="clickUpgradeText">Base PPC (points per click) x1.3</p>
                 <p class = "modalTextStat" id="upgrade2costindicator">75</p>
                 <p class="clickUpgradeText">points.</p>
-                <p class="clickUpgradeTextInline">Level: <p class="clickUpgradeTextInline" id="upg2level">0</p><p class="clickUpgradeTextInline">/7</p></p>
+                <p class="clickUpgradeTextInline">Level: <p class="clickUpgradeTextInline" id="upg2level">0</p><p class="clickUpgradeTextInline">/10</p></p>
             </button>
         </div>
         <br>
@@ -53,12 +66,13 @@
                 <p class="clickUpgradeTextInline" id="upg3level">0<p class="clickUpgradeTextInline" id="upg3maxlevel">/1</p></p>
             </button>
         </div>
-        <!--<div id="clickUpgrade4">
+        <br>
+        <div id="clickUpgrade4">
             <button class="clickUpgrade" id="clickUpgrade3" onclick="">
-                <p class="clickUpgradeTitle">4. Upgrades for your upgrades</p>
-                <p class="clickUpgradeText">Multiplies the effect of upgrade 3 by 1.5</p>
-                <p class="modalTextStat" id="upgrade4costIndicator">1500</p>
+                <p class="clickUpgradeTitle">4. Buy a mine</p>
+                <p class="clickUpgradeText">Unlocks <b>mining</b>. broken for now</p>
+                <p class="modalTextStat" id="upgrade4costIndicator">>:3</p>
             </button>
-        </div><-->
+        </div>
     </div>
 </body>

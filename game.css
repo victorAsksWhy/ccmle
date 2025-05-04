@@ -1,10 +1,8 @@
 button.cookie{
     background-color: #b8922a;
-    border: none;
     color: white;
     padding: 16px 32px;
     font-size: 12px;
-    border-color: #705a1e;
     border: 2px solid #705a1e;
     
 }
@@ -105,4 +103,14 @@ span.productionTextInline{
     font-size: 12px;
     line-height: 4px;
     color: rgb(255, 255, 255);
+}
+/* code for the mineing themed stuff*/
+/*hate css*/
+
+button.mineButton{
+    background-color: #00a2ff;
+    color: white;
+    padding: 16px 32px;
+    font-size: 12px;
+    border: 2px solid #0078bd;
 }

@@ -1,4 +1,5 @@
-// dont elete or else
+//import Chance from 'chance'
+//const chance = new Chance()
 var baseppc = 1;
 var points = 0;
 var cpcBonusUpgrade2 = 0;
@@ -32,9 +33,9 @@ function calculateBonus(type, amount, baseOrBoost){ //hopefully rework the bonus
         else if (type == 'multi'){
             bonusTotal = bonusTotal * amount; //pls don't use this it will screw up progression
         }
-    }
+    };
     //update();
-}
+};
 function addPoint(){
     var pointsPerClick = baseppc+bonusTotal;    
     points += pointsPerClick;
@@ -58,16 +59,16 @@ function upgrade1(){
         calculateBonus(type, amount, boostType);
         update();
         
-    }   
-}
+    };  
+};
 //upgrade 2 things
 
 var upgrade2cost = 75; //formula: 75*2^level
 var upgrade2level = 0;
 function upgrade2(){  
-    var upgrade2maxlevel = 7;
+    var upgrade2maxlevel = 10;
     var type = 'multi';
-    var amount = 2;
+    var amount = 1.3;
     var boostType = 'base';
     if (points >= upgrade2cost && upgrade2level < upgrade2maxlevel){
         points -= upgrade2cost;    
@@ -78,8 +79,8 @@ function upgrade2(){
         document.getElementById("upg2level").innerHTML=upgrade2level;     
         calculateBonus(type,amount,boostType);
         update();
-    }   
-}
+    };
+};
 
 //upgrade 3 things
 
@@ -100,5 +101,27 @@ function upgrade3(){
         document.getElementById("upgrade3costIndicator").innerHTML=upgrade3cost;
         calculateBonus(type,amount,boostType);
         update();
+    };
+};
+var upgrade4cost = 2500;
+var upgrade4level = 0;
+function upgrade4(){ // unlocks mining, will not use da system
+        var maxlevel = 1;
+        if (points >= upgrade4cost && upgrade3level < maxlevel){
+            points -= upgrade4cost;
+            update();
+            console.log('breaking news: local player unlocks mining');
+    }
+}
+
+//all the mining stuuf goes here
+//here we go again
+class oreGenerator{
+    constructor(){
+        this.ores = [];
+    }
+    newOre(oreName, rarity){
+        //note: don't screw up and have a negative chance
+        this.ores.push({oreName, chance: 1 / rarity})
     }
 }

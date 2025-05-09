@@ -113,15 +113,3 @@ function upgrade4(){ // unlocks mining, will not use da system
             console.log('breaking news: local player unlocks mining');
     }
 }
-
-//all the mining stuuf goes here
-//here we go again
-class oreGenerator{
-    constructor(){
-        this.ores = [];
-    }
-    newOre(oreName, rarity){
-        //note: don't screw up and have a negative chance
-        this.ores.push({oreName, chance: 1 / rarity})
-    }
-}

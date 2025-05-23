@@ -2,20 +2,30 @@
 //const chance = new Chance()
 var baseppc = 1;
 var points = 0;
-var cpcBonusUpgrade2 = 0;
-var upgrade3level = 0;
-var boughtUpgrade3 = 0;
 var bonusTotal = 0;
+//stuff for leavves
+var lpcBase = 1;
+var leaves = 0;
+var leafBonusTotal = 0
+
 
 function update(){
     var pointsPerClick = baseppc +bonusTotal;
     document.getElementById("pointIndicator").innerHTML=pointsPerClick;
     document.getElementById("pointstext").innerHTML=points;
-    console.log("updated to %d points. you are getting %d points per click.", points,pointsPerClick)
+    document.getElementById('leafTextDisplay').innerHTML=leaves;
+    pluralize();
+    console.log("updated to %d points. you are getting %d points per click.", points,pointsPerClick);
 }
 function setpoints(n){ //🤫
     points=n;
     update();
+}
+function pluralize(){
+    var pointsPerClick = baseppc +bonusTotal;
+    if (pointsPerClick != 1){
+        document.getElementById('pointsPluralize').innerHTML='points.';
+    }
 }
 function calculateBonus(type, amount, baseOrBoost){ //hopefully rework the bonus
     if (baseOrBoost == 'base'){ //type: additive or multiplicative.
@@ -23,7 +33,7 @@ function calculateBonus(type, amount, baseOrBoost){ //hopefully rework the bonus
             baseppc += amount;  //baseOrBoost: modify the base or add a boost
         }
         else if (type == 'multi'){
-            baseppc = baseppc * amount;
+            baseppc = Math.round(baseppc * amount);
         }
     }
     else if (baseOrBoost == 'boost'){
@@ -39,11 +49,10 @@ function calculateBonus(type, amount, baseOrBoost){ //hopefully rework the bonus
 function addPoint(){
     var pointsPerClick = baseppc+bonusTotal;    
     points += pointsPerClick;
-    document.getElementById("pointstext").innerHTML=points;
     update();
 }
 var upgrade1cost = 10; //formula: 10*level^1.2 must be declared outside!
-var upgrade1level = 1; //must be ou
+var upgrade1level = 1; //must be ou --- rest of comment missing, no idea what it was for
 function upgrade1(){  
     var upgrade1maxlevel = 20;
     var type = 'add';
@@ -73,7 +82,7 @@ function upgrade2(){
     if (points >= upgrade2cost && upgrade2level < upgrade2maxlevel){
         points -= upgrade2cost;    
         upgrade2level += 1;
-        upgrade2cost = 75*2**upgrade2level;
+        upgrade2cost = Math.round(75*2**upgrade2level);
         console.log("the cost of upg 2 is now %d and the level is %d",upgrade2cost, upgrade2level);
         document.getElementById("upgrade2costindicator").innerHTML=upgrade2cost;
         document.getElementById("upg2level").innerHTML=upgrade2level;     
@@ -110,6 +119,14 @@ function upgrade4(){ // unlocks mining, will not use da system
         if (points >= upgrade4cost && upgrade3level < maxlevel){
             points -= upgrade4cost;
             update();
-            console.log('breaking news: local player unlocks mining');
+            console.log('le natural');
     }
+}
+
+// stuff for levaes
+function makeLeaf(){
+    var leafsToMake = lpcBase+leafBonusTotal;
+    leaves += leafsToMake;
+    console.log('maked %d', leaves)
+    update();
 }

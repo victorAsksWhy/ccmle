@@ -26,14 +26,17 @@ function pluralize(){
     if (pointsPerClick != 1){
         document.getElementById('pointsPluralize').innerHTML='points.';
     }
-}
-function calculateBonus(type, amount, baseOrBoost){ //hopefully rework the bonus
+	if (points != 1) {
+		document.getElementById('pointstextPluralize').innerHTML='points.';
+	}
+};
+function calculateBonus(type, amount, baseOrBoost){
     if (baseOrBoost == 'base'){ //type: additive or multiplicative.
         if (type == 'add'){     //amount + or times by how much
             baseppc += amount;  //baseOrBoost: modify the base or add a boost
         }
         else if (type == 'multi'){
-            baseppc = Math.round(baseppc * amount);
+            baseppc = Math.ceil(baseppc * amount);
         }
     }
     else if (baseOrBoost == 'boost'){
@@ -77,7 +80,7 @@ var upgrade2level = 0;
 function upgrade2(){  
     var upgrade2maxlevel = 10;
     var type = 'multi';
-    var amount = 1.3;
+    var amount = 1.5;
     var boostType = 'base';
     if (points >= upgrade2cost && upgrade2level < upgrade2maxlevel){
         points -= upgrade2cost;    
@@ -124,9 +127,18 @@ function upgrade4(){ // unlocks mining, will not use da system
 }
 
 // stuff for levaes
+function displayLeafProgress(unlocked){
+	const affectedElments = document.querySelectorAll('[name="affectedByLeaf"]');
+	if (unlocked == false){
+		affectedElments.forEach(elem => {elem.style.display = 'none';})
+	} 
+	else {
+		affectedElments.forEach(elem => {elem.style.display = '';});
+	};
+};
 function makeLeaf(){
     var leafsToMake = lpcBase+leafBonusTotal;
     leaves += leafsToMake;
-    console.log('maked %d', leaves)
+    console.log('maked %d', leaves); // maked hahah
     update();
-}
+};

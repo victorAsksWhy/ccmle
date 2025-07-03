@@ -52,6 +52,7 @@ function calculateBonus(type, amount, baseOrBoost){
 function addPoint(){
     var pointsPerClick = baseppc+bonusTotal;    
     points += pointsPerClick;
+	document.activeElement.blur()
     update();
 }
 var upgrade1cost = 10; //formula: 10*level^1.2 must be declared outside!
@@ -78,7 +79,7 @@ function upgrade1(){
 var upgrade2cost = 75; //formula: 75*2^level
 var upgrade2level = 0;
 function upgrade2(){  
-    var upgrade2maxlevel = 10;
+    var upgrade2maxlevel = 5;
     var type = 'multi';
     var amount = 1.5;
     var boostType = 'base';
@@ -115,14 +116,14 @@ function upgrade3(){
         update();
     };
 };
-var upgrade4cost = 2500;
+var upgrade4cost = 5000;
 var upgrade4level = 0;
 function upgrade4(){ // unlocks mining, will not use da system
         var maxlevel = 1;
         if (points >= upgrade4cost && upgrade3level < maxlevel){
             points -= upgrade4cost;
             update();
-            console.log('le natural');
+            console.log('unlocked nature!');
     }
 }
 

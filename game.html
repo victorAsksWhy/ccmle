@@ -4,12 +4,18 @@
 <head>
     <title>Points Unautomated</title>
     <script src="points.js"></script>
+	<script src="adminpanel.js"></script>
 	<script src="clickanimation.js"></script>
     <link rel="stylesheet" href="game.css">
 </head>
 <body>
     <h1>Points Unautomated</h1>
+	<h1 id="hackindicator" style="display:none; color:red">Debug mode on</h1>
+	<button style="position:fixed; top:0; right:0; margin:8px;" id="musicToggle">Unmute</button>
+	<script src="bgmusicplayer.js"></script><!--scipt must be here, or it will get null><-->
     <hr>
+	<h2>News</h2> 
+	<p class="textGeneric">The biggest update yet! Music, sound effects, and art! You can now get leaves, but they don't do anything yet.</p>
     <h2>Production</h2>     
     <div class="buttons">
         <button class="cookie" id="cookieUpgrade0" style="display: block; right: 0px;" onclick="addPoint(); animatePoint()">
@@ -53,7 +59,7 @@
 	<br>
         <button class="clickUpgrade" id="clickUpgrade2" onclick="upgrade2()">
             <p class="clickUpgradeTitle">2. More enhancements</p>
-            <p class="clickUpgradeText">Base PPC (points per click) x1.3 for</p>
+            <p class="clickUpgradeText">Base PPC (points per click) x1.5 for</p>
             <p class = "modalTextStat" id="upgrade2costindicator">75</p>
             <p class="clickUpgradeText">points.</p>
             <p class="clickUpgradeTextInline">Level: <p class="clickUpgradeTextInline" id="upg2level">0</p><p class="clickUpgradeTextInline">/5</p></p>
@@ -70,10 +76,10 @@
         </button>
 	<br>
 	<br>
-        <button class="clickUpgrade" id="clickupgrade3" onclick="upgrade4()">
+        <button class="clickUpgrade" id="clickupgrade4" onclick="upgrade4()">
             <p class="clickUpgradeTitle">4. The next phase</p>
 			<p class="clickUpgradeText">Unlock the next phase of gameplay for</p>
-			<p class="modalTextStat">5000</p>
+			<p class="modalTextStat">3000</p>
 			<p class="clickUpgradeText">points</p>
-			<p class="clickUpgradeTextInline">Locked</p>
+			<p class="clickUpgradeTextInline" id="leafunlocked">Locked</p>
         </button>

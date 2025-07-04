@@ -150,3 +150,11 @@ button.leaf{
 .leafstuff{
     display: none;
 }
+
+.textGeneric{
+	font-size: 12;
+    color:black;
+    text-align: normal;
+    line-height: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+	

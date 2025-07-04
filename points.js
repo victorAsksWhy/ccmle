@@ -15,7 +15,6 @@ function update(){
     document.getElementById("pointstext").innerHTML=points;
     document.getElementById('leafTextDisplay').innerHTML=leaves;
     pluralize();
-    console.log("updated to %d points. you are getting %d points per click.", points,pointsPerClick);
 }
 function setpoints(n){ //🤫
     points=n;
@@ -31,20 +30,26 @@ function pluralize(){
 	}
 };
 function calculateBonus(type, amount, baseOrBoost){
+	const snd = new Audio('upgsound.mp3')
     if (baseOrBoost == 'base'){ //type: additive or multiplicative.
         if (type == 'add'){     //amount + or times by how much
-            baseppc += amount;  //baseOrBoost: modify the base or add a boost
+            baseppc += amount;
+			snd.play();//baseOrBoost: modify the base or add a boost
         }
         else if (type == 'multi'){
             baseppc = Math.ceil(baseppc * amount);
+			snd.play();
         }
     }
     else if (baseOrBoost == 'boost'){
         if (type == 'add'){
             bonusTotal += amount;
+			snd.play();
         }
         else if (type == 'multi'){
-            bonusTotal = bonusTotal * amount; //pls don't use this it will screw up progression
+            bonusTotal = bonusTotal * amount;
+			snd.play();
+			//pls don't use this it will screw up progression
         }
     };
     //update();
@@ -53,6 +58,7 @@ function addPoint(){
     var pointsPerClick = baseppc+bonusTotal;    
     points += pointsPerClick;
 	document.activeElement.blur()
+	console.log("%d points and %d PPC",points,pointsPerClick);
     update();
 }
 var upgrade1cost = 10; //formula: 10*level^1.2 must be declared outside!
@@ -66,7 +72,7 @@ function upgrade1(){
         points -= upgrade1cost;    
         upgrade1level += 1;
         upgrade1cost = Math.round(10 * upgrade1level ** 1.2);  
-        console.log('cost: %d. level: %d', upgrade1cost,upgrade1level)
+        console.log('point upg1 cost: %d. level: %d', upgrade1cost,upgrade1level)
         document.getElementById("upgrade1costindicator").innerHTML=upgrade1cost;
         document.getElementById("upg1level").innerHTML=upgrade1level;     
         calculateBonus(type, amount, boostType);
@@ -103,7 +109,7 @@ function upgrade3(){
     var upgrade3maxlevel = 1;
     var type='add';
     var amount=25;
-    var boostType='base';
+    var boostType='boost';
     if (points >= upgrade3cost && upgrade3level < upgrade3maxlevel){
         boughtUpgrade3 = 1;
         points -= upgrade3cost;
@@ -116,14 +122,23 @@ function upgrade3(){
         update();
     };
 };
-var upgrade4cost = 5000;
+var upgrade4cost = 3000;
 var upgrade4level = 0;
-function upgrade4(){ // unlocks mining, will not use da system
-        var maxlevel = 1;
-        if (points >= upgrade4cost && upgrade3level < maxlevel){
+var boughtupgrade4 = 0;
+function upgrade4(){ // unlocks natyre will not use da system
+    var maxlevel = 1;
+        if (points >= upgrade4cost && upgrade4level < maxlevel && boughtupgrade4==0){
+			const soundeffect = new Audio('tierupsound.mp3')
             points -= upgrade4cost;
+			document.querySelectorAll('.leafstuff').forEach(el => {
+				el.style.display='block';
+			});
             update();
+			soundeffect.play();
+			console.log('played sound tierup.mp3');
             console.log('unlocked nature!');
+			boughtupgrade4='ye';
+			document.getElementById('leafunlocked').innerHTML='Unlocked!';
     }
 }
 
